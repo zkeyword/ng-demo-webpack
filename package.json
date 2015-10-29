@@ -1,0 +1,14 @@
+{
+  "name": "ng-demo",
+  "version": "0.1.0",
+  "scripts": {
+    "gulp": "gulp",
+    "run": "npm run gulp"
+  },
+  "devDependencies": {
+    "gulp": "*",
+	"gulp-uglify": "*",
+	"webpack": "*",
+	"glob": "*"
+  }
+}

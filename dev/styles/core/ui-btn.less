@@ -1,0 +1,289 @@
+/* 公用按钮背景颜色及边框样式 */
+.ui-btn-stauts(@bgCol, @bgHoverCol, @fontCol, @fontHoverCol:'', @borderCol:'', @borderHoverCol:'', @isTransition:''){
+	.fontHoverCol (@fontHoverCol) when (@fontHoverCol = '') {
+		@fontHoverCol:@fontCol;
+	}
+	.borderCol (@borderCol) when (@borderCol = '') {
+		@borderCol:@bgCol;
+	}
+	.borderHoverCol (@borderHoverCol) when (@borderHoverCol = '') {
+		@borderHoverCol:@bgCol;
+	}
+	.isTransition (@isTransition) when (@isTransition = '') {
+		transition:background ease 0.3s;
+	}
+	.isTransition(@isTransition);
+	.fontHoverCol(@fontHoverCol);
+	.borderCol(@borderCol);
+	.borderHoverCol(@borderHoverCol);
+	
+	background:@bgCol;
+	border:1px solid @borderCol;
+	color:@fontCol;
+	
+	height:32px;
+	line-height:32px;
+	display:inline-block;
+	font-size:12px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	cursor:pointer;
+	
+	&:hover{
+		background:@bgHoverCol;
+		color:@fontHoverCol;
+		border:1px solid @borderHoverCol;
+		text-decoration:none;
+	}
+	&:active{
+		.box-shadow(0, 3px, 5px, .1, inset);
+	}
+}
+
+/*普通按钮*/
+.ui-btn{
+
+	.ui-btn-stauts( @col-btn, @col-btn-hover, @col-white );
+	.border-radius(2px);
+	padding:0 15px;
+	
+	.icon{
+		display:inline-block;
+		
+		&:first-child{
+			padding:0 3px 0 0;
+		}
+		&:last-child{
+			padding:0 0 0 3px;
+		}
+	}
+}
+.ui-btn-small{
+
+	.ui-btn-stauts(
+		@col-btn-small,              //背景色
+		@col-btn-small-hover,        //hover背景色
+		@col-btn-small-font,         //文字色
+		@col-btn-small-font-hover,   //hover文字色
+		@col-btn-small-border,       //边框色
+		@col-btn-small-border-hover, //hover边框色	
+		'noTransition'        //无过渡效果
+	);
+	.border-radius(2px);
+	padding:0 10px;
+
+	height:20px;
+	line-height:20px;
+	
+	a{color:@col-gray2}
+	
+	.icon{
+		color:@col-btn;
+		margin:0 3px 0 0;
+	}
+	
+	&:hover .icon{
+		color:@col-white;
+	}
+}
+.ui-btn-big{
+	.ui-btn-stauts(@col-btn, @col-btn-hover, @col-white);
+	.border-radius(2px);
+	
+	a{color:@col-white}
+	padding:0;
+	height:48px;
+	line-height:48px;
+	width:158px;
+    font-size: 18px;
+}
+// largeBig暂无
+.ui-btn-largeBig{
+	.ui-btn-stauts( @col-btn, @col-btn-hover, @col-white);
+	.border-radius(2px);
+	
+	font-size:14px;
+	a{color:@col-white}
+	padding:0;
+	height:40px;
+	line-height:40px;
+	width:165px;
+}
+.ui-btn-cancel{
+	background:@col-btn-cancel;
+	border:1px solid @col-btn-cancel-border;
+	color:@col-btn-cancel-font;
+	&:hover{
+		background:@col-btn-cancel-hover;
+		border:1px solid @col-btn-cancel-border-hover;
+		color:@col-btn-cancel-font-hover;
+	}
+}
+.ui-btn-disable{
+	background:@col-btn-disable !important;
+	border:1px solid @col-btn-disable-border !important;
+	color:@col-btn-disable-font !important;
+	cursor:not-allowed !important;
+	&:hover{
+		background:@col-btn-disable-hover !important;
+		border:1px solid @col-btn-disable-border-hover !important;
+		color:@col-btn-disable-font-hover !important;
+	}
+}
+.ui-btn-blue{
+	background:@col-btn-blue;
+	border:1px solid @col-btn-blue-border;
+	&:hover{
+		background:@col-btn-blue-hover;
+		border:1px solid @col-btn-blue-border-hover;
+	}
+}
+.ui-btn-gray{
+	background: @col-btn-gray;
+	border:1px solid @col-btn-gray-border;
+	color:@col-btn-gray-font;
+	&:hover{
+		background:@col-btn-gray-hover;
+		border:1px solid @col-btn-gray-border-hover;
+		color:@col-btn-gray-font-hover;
+	}
+}
+.ui-btn-red{
+	background: @col-btn-red;
+	border:1px solid @col-btn-red-border;
+	color:@col-btn-red-font;
+	&:hover{
+		background:@col-btn-red-hover;
+		border:1px solid @col-btn-red-border-hover;
+		color:@col-btn-red-font-hover;
+	}
+}
+
+.ui-btn-white{
+	background: @col-btn-cancel;
+	border:1px solid @col-btn-cancel-border;
+	color:@col-btn-cancel-font;
+	&:hover{
+		background:@col-btn-cancel-hover;
+		border:1px solid @col-btn-cancel-border-hover;
+		color:@col-btn-cancel-font-hover;
+	}
+}
+
+/* 文件上传 */
+.ui-btn-file{
+	position:relative;
+	overflow:hidden;
+	cursor:pointer;
+	
+	input{
+		opacity:0;
+		filter:alpha(opacity=0);
+		position:absolute;
+		left:0;
+		top:0;
+		cursor:pointer;
+	}
+}
+
+/* 下拉框按钮 */
+.ui-btn-dropdown{
+	display:inline-block;
+	position:relative;
+	vertical-align:middle;
+	
+	.ui-btn{height:26px;line-height:26px;font-size:12px;}
+		
+	.ui-btn-dropdown-icon{
+		position:absolute;
+		top:0;
+		right:10px;
+		display:inline-block;
+		margin:0;
+		height:26px;
+		line-height:26px;
+		cursor:pointer;
+		right:-22px;
+		padding:0 8px;
+		.ui-btn-stauts(@col-btn, @col-btn-hover, @col-white);
+		.border-radius(4px, right);
+		border-left:1px solid #fff;
+	}
+	
+	.ui-btn-dropdown-menu{
+		min-width:66px;
+		position:absolute;
+		top:26px;
+		z-index:1000;
+		background:#fff;
+		border:1px solid @col-form-border;
+		max-height:180px;
+		overflow-y:auto;
+		.box-sizing();
+		
+		li{
+			padding:3px 5px;
+			cursor:pointer;
+			white-space:nowrap;
+			
+			&:hover{
+				background:@col-form-select;
+				color:#fff;
+			}
+		}
+	}
+}
+
+/* 并排按钮样式 */
+.ui-btn-group{float:left;}
+	.ui-btn-group .ui-btn{
+		float:left;
+		.border-radius(0px);
+		border-right:1px solid @col-white;
+	}
+	.ui-btn-group .ui-btn:first-child{
+		.border-radius(4px, left);
+	}
+	.ui-btn-group .ui-btn:last-child{
+		.border-radius(4px, right);
+		border-right:none;
+	}
+
+
+/*开关按钮*/
+.ui-btn-switch{
+	position:relative;
+	height:20px;
+	line-height:20px;
+	.border-radius(25px);
+	i{	
+		display:block;
+		background:#fff;
+		position:absolute;
+		top:2px;
+		height:16px;
+		width:16px;
+		.border-radius(25px);
+		transition:left .2s ease;
+	}
+}
+.ui-btn-switch-open{
+	padding:0 10px 0 22px;
+	i{
+		left:2px;
+	}
+}
+.ui-btn-switch-close{
+	background:@col-btn-disable;
+	padding:0 22px 0 10px;
+	
+	i{
+		left:50px;
+	}
+	&:hover{
+		background:@col-btn-disable-hover;
+	}
+}
+
+	

@@ -1,0 +1,118 @@
+/* 公共表单样式 */
+button[disabled], html input[disabled], html select[disabled]{background-color:#eee}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+
+.ui-form-stauts(@radius: true; @boxSizing: true){
+	background:@col-white;
+	border:1px solid @col-form-border;
+	color:@col-form-font;
+	
+	.radius(@radius) when (@radius = true){
+		.border-radius(2px);
+	}
+	//.boxSizing(@boxSizing) when (@boxSizing = true){
+	//	.box-sizing();
+	//}
+	.radius(@radius);
+	//.boxSizing(@boxSizing);
+	.transition(All 0.3s ease-in-out);
+
+	&:hover,&:focus{
+		border-color:@col-form-border-hover;
+		.box-shadow(0, 0, 3px, @col-form-border-hover);
+	}
+}
+.ui-form{
+	.ui-labelBox,label{
+		float:left;position:relative;min-width:20px;min-height:34px;
+		.ui-label{cursor:pointer;}
+	}
+
+	.ui-label{
+		display:block;
+		height:34px;
+		line-height:34px;
+		float:left;
+		text-align:right;
+		color:@col-block2;
+		white-space: nowrap;
+		em{
+			color:@col-red;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+	}
+}
+
+/* input */
+.ui-input{
+	height:14px;line-height:14px;padding:9px 10px;float:left;
+	background: #fafafa;
+	.ui-form-stauts();
+	&:-webkit-autofill{
+		background:@col-white;
+	}
+	&::-webkit-input-placeholder{
+		line-height:normal;
+	}
+	
+	&.ui-disable{
+	    background-color: #F4F4F4;
+	    cursor: not-allowed;
+	}
+}
+.ui-input-disable{background:@col-form-disable;cursor:not-allowed;}
+
+
+/* 时间 */
+.ui-input-date{background:@col-white url(../img/datePicker.gif) right center no-repeat;cursor:default;font-size:12px;padding-right:27px;font-weight:normal !important}
+
+/* textarea */
+.ui-textarea {
+	padding:10px;float:left;
+	
+	.ui-form-stauts();
+}
+.ui-textarea-disable{background:@col-form-disable;cursor:not-allowed;}
+
+/* select */
+.ui-select{
+	height:32px;line-height:30px;padding:0 25px 0 10px;vertical-align:middle;float:left;margin-right: 5px;position:relative;cursor: pointer;
+	.ui-form-stauts(true,false);
+	
+	i{
+		position:absolute;
+		top:13px;
+		right:8px;
+		.arrow(#ccc, down, 5px);
+	}
+}
+.ui-select-disable{background:@col-form-disable;cursor:not-allowed;}
+
+/* checkbox&radio */
+.ui-checkbox,.ui-radio{position:absolute;left:0;top:11px;width:13px;height:13px}
+.ui-checkbox-label,.ui-radio-label{margin-left:16px !important; text-align: left !important; width: auto !important;}
+
+/* 验证及表单消息 */
+.l-form-error{border:1px solid @col-validator;}
+.ui-form-message{
+	position:relative;height:30px;line-height:30px;margin:0;color:@col-gray2;
+	
+	float:left;
+	
+	.icon{
+		padding:0 5px 0 0;
+	}
+	&.error{
+		color:@col-red;
+	}
+	
+}
+
+//input text后面跟随的默认风格文字
+.ui-input-aftertxt{
+    color: @col-black;
+    line-height: 34px;
+    margin: 0 5px;
+}
