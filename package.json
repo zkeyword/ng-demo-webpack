@@ -1,5 +1,5 @@
 {
-  "name": "ng-demo",
+  "name": "ng-demo-webpack",
   "version": "0.1.0",
   "scripts": {
     "gulp": "gulp",
@@ -9,6 +9,14 @@
     "gulp": "*",
 	"gulp-uglify": "*",
 	"webpack": "*",
-	"glob": "*"
+	"glob": "*",
+	"gulp-less": "*",
+    "gulp-minify-css": "*",
+	"gulp-imagemin":  "*",
+	"gulp-htmlmin": "*",
+	"gulp.spritesmith": "*",
+	"gulp-cache":  "*",
+    "gulp-plumber": "^1.0.1",
+	"del": "*"
   }
 }

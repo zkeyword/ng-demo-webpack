@@ -1,4 +1,4 @@
-var homeViewController = require('../app').controller('homeViewController', [
+require('../app').controller('homeViewController', [
 	'$rootScope',
 	'$scope',
 	'dateService',
@@ -21,5 +21,3 @@ var homeViewController = require('../app').controller('homeViewController', [
 		
 	}
 ]);
-
-module.exports = homeViewController;

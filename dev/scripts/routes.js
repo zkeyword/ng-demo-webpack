@@ -2,7 +2,7 @@
 
 var app = require('./app');
 
-require('./common/base')
+require('./common/base');
 
 app.config([
 	'$stateProvider', 

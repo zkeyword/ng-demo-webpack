@@ -7,7 +7,6 @@ require('../services/dialog');
 require('../services/template');
 require('../services/page');
 
-
 require('../controllers/homeViewController');
 require('../controllers/userViewController');
 require('../controllers/formViewController');
