@@ -10,6 +10,8 @@ var gulp          = require('gulp'),
 	del           = require('del'),
 	plumber       = require('gulp-plumber'),
 	cache         = require('gulp-cache'),
+	obfuscate     = require('gulp-obfuscate'),
+	jfogs         = require('jfogs'),
 	path          = {
 						dev: 'dev/',
 						dest: 'dest/'

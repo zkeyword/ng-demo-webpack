@@ -21,14 +21,17 @@ define(function(require){
 			page
 		){
 			
-			$scope.id = $stateParams.id;
 			
 			var url  = "data/data.json",
 				url2 = "data/data2.json";
-						
+
 			$http.get(url).success(function(response) {
 				$scope.list = response;
 			});
+			
+			$scope.id = $stateParams.id;
+			
+			$scope.test = 1111111;
 			
 			$scope.search = function(){
 				

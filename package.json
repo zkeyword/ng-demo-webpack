@@ -7,16 +7,21 @@
   },
   "devDependencies": {
     "gulp": "*",
-	"gulp-uglify": "*",
-	"webpack": "*",
-	"glob": "*",
-	"gulp-less": "*",
+    "gulp-uglify": "*",
+    "webpack": "*",
+    "glob": "*",
+    "gulp-less": "*",
     "gulp-minify-css": "*",
-	"gulp-imagemin":  "*",
-	"gulp-htmlmin": "*",
-	"gulp.spritesmith": "*",
-	"gulp-cache":  "*",
+    "gulp-imagemin": "*",
+    "gulp-htmlmin": "*",
+    "gulp.spritesmith": "*",
+    "gulp-cache": "*",
     "gulp-plumber": "^1.0.1",
-	"del": "*"
+    "del": "*",
+    "gulp-obfuscate": "*",
+    "gulp-encrypt": "*"
+  },
+  "dependencies": {
+    "jfogs": "0.0.11"
   }
 }

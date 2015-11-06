@@ -14,6 +14,8 @@
 
 {{formData}}
 
+{{test | odditems}}
+
 <div id="l-grid">
 	<table>
 		<tr>
@@ -21,7 +23,7 @@
 			<th>操作</th>
 		</tr>
 		<tr ng-repeat="item in list track by $index" ng-class="{current:$index == 0, even:$index%2 == 0, last:$index == list.length - 1}" data-index="{{$index}}">
-			<td><a ui-sref="home.user.detail({id:item.id})">{{item.Name}}</a></td>
+			<td><a ui-sref="home.user.detail({id:item.id})" ng-bind-html="item.Name | trustAsHtml "></a></td>
 			<td><a ng-click="del(item.id, item)">删除</a></td>
 		</tr>
 		<tr ng-if="!list">
@@ -36,3 +38,4 @@
 <style type="text/css">
 .current{font-weight:bold}
 </style>
+
