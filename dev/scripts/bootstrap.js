@@ -2,6 +2,7 @@
 require('angular.min');
 require('angular-ui-router.min');
 require('angular-animate.min');
+require('angular-messages.min');
 require('template');
 require('./routes');
 

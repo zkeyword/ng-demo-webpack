@@ -21,7 +21,7 @@ var gulp          = require('gulp'),
 gulp.task('js', function () {
   gulp.src(path.dev+'dev/')
     .pipe(webpack(webpackConfig))
-	.pipe(minifyJs())
+	//.pipe(minifyJs())
     .pipe(gulp.dest('./dest'));
 });
 

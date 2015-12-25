@@ -69,6 +69,15 @@ app.config([
 						controller: 'userViewController'
 					}
 				}
+			})
+			.state('home.form', {
+				url: 'form',
+				views: {
+					'right@home': {
+						templateUrl: './dest/views/form/index.html',
+						controller: 'formViewController'
+					}
+				}
 			});
 			
 		

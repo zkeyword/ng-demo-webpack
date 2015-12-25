@@ -1,7 +1,7 @@
 'use strict';
 
-require('../directives/start-directive');
-require('../directives/title');
+require('../directives/pagination');
+require('../directives/validation');
 require('../services/date');
 require('../services/dialog');
 require('../services/template');
