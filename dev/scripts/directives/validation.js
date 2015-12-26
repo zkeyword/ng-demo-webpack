@@ -9,7 +9,7 @@ require('../app').directive('validator', ['$http', function($http) {
 			console.log(1, attrs, c)
 			ele.bind('blur', function(e){
 				
-				c.$setValidity('unique', true);
+				c.$setValidity('unique', false);
 				
 				/*$http({
 					method: 'POST',

@@ -64,6 +64,22 @@
 	-->
 	
 	<div>
+	  <label>username2</label>
+		<input  type="text" 
+				placeholder="Desired username2" 
+				name="username2" 
+				ng-model="main.username2" 
+				 />
+	  <div class="error" ng-show="userForm.username2.$dirty && userForm.username2.$invalid">
+		<small class="error" ng-show="userForm.username2.$error.required">Please input a username2</small>
+		<small class="error" ng-show="userForm.username2.$error.minlength">Your username2 is required to be at least 3 characters</small>
+		<small class="error" ng-show="userForm.username2.$error.maxlength">Your username2 cannot be longer than 20 characters</small>
+		<small class="error" ng-show="userForm.username2.$error.unique">That username2 is taken, please try another</small>
+	  </div>
+	  {{ userForm.username2.$error | json }}
+	</div>
+	
+	<div>
 	  <label>Username</label>
 		<input  type="text" 
 				placeholder="Desired username" 

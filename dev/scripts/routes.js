@@ -7,9 +7,11 @@ require('./common/base');
 app.config([
 	'$stateProvider', 
 	'$urlRouterProvider',
+	'$httpProvider',
 	function(
 		$stateProvider,
-		$urlRouterProvider
+		$urlRouterProvider,
+		$httpProvider
 	) {
 		
 		$stateProvider
@@ -78,10 +80,64 @@ app.config([
 						controller: 'formViewController'
 					}
 				}
+			}).state('home.grid', {
+				url: 'grid',
+				views: {
+					'right@home': {
+						templateUrl: './dest/views/grid/index.html',
+						controller: 'gridViewController'
+					}
+				}
 			});
 			
 		
 		$urlRouterProvider.otherwise('/');
+		
+		
+				
+		$httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+		$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+		$httpProvider.defaults.transformRequest = [function (data) {
+			var param = function (obj) {
+				var query = '',
+				name,
+				value,
+				fullSubName,
+				subName,
+				subValue,
+				innerObj,
+				i;
+				
+				for (name in obj) {
+					value = obj[name];
+					if (value instanceof Array) {
+						for (i = 0; i < value.length; ++i) {
+							subValue = value[i];
+							fullSubName = name + '[' + i + ']';
+							innerObj = {};
+							innerObj[fullSubName] = subValue;
+							query += param(innerObj) + '&';
+						}
+					} else if (value instanceof Object) {
+						for (subName in value) {
+							subValue = value[subName];
+							if (subValue != null) {
+								fullSubName = name + '.' + subName;
+								innerObj = {};
+								innerObj[fullSubName] = subValue;
+								query += param(innerObj) + '&';
+							}
+						}
+					} else if (value !== undefined) {
+						query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+					}
+				}
+				return query.length ? query.substr(0, query.length - 1) : query;
+			};
+			return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+		}];
+		
+		$httpProvider.defaults.useXDomain = true; 
 		
 	}
 ]);

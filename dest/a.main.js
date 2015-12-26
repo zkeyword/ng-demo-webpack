@@ -473,9 +473,11 @@
 	app.config([
 		'$stateProvider', 
 		'$urlRouterProvider',
+		'$httpProvider',
 		function(
 			$stateProvider,
-			$urlRouterProvider
+			$urlRouterProvider,
+			$httpProvider
 		) {
 			
 			$stateProvider
@@ -544,10 +546,64 @@
 							controller: 'formViewController'
 						}
 					}
+				}).state('home.grid', {
+					url: 'grid',
+					views: {
+						'right@home': {
+							templateUrl: './dest/views/grid/index.html',
+							controller: 'gridViewController'
+						}
+					}
 				});
 				
 			
 			$urlRouterProvider.otherwise('/');
+			
+			
+					
+			$httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+			$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+			$httpProvider.defaults.transformRequest = [function (data) {
+				var param = function (obj) {
+					var query = '',
+					name,
+					value,
+					fullSubName,
+					subName,
+					subValue,
+					innerObj,
+					i;
+					
+					for (name in obj) {
+						value = obj[name];
+						if (value instanceof Array) {
+							for (i = 0; i < value.length; ++i) {
+								subValue = value[i];
+								fullSubName = name + '[' + i + ']';
+								innerObj = {};
+								innerObj[fullSubName] = subValue;
+								query += param(innerObj) + '&';
+							}
+						} else if (value instanceof Object) {
+							for (subName in value) {
+								subValue = value[subName];
+								if (subValue != null) {
+									fullSubName = name + '.' + subName;
+									innerObj = {};
+									innerObj[fullSubName] = subValue;
+									query += param(innerObj) + '&';
+								}
+							}
+						} else if (value !== undefined) {
+							query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+						}
+					}
+					return query.length ? query.substr(0, query.length - 1) : query;
+				};
+				return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+			}];
+			
+			$httpProvider.defaults.useXDomain = true; 
 			
 		}
 	]);
@@ -583,6 +639,7 @@
 	__webpack_require__(17);
 	__webpack_require__(18);
 	__webpack_require__(19);
+	__webpack_require__(20);
 
 /***/ },
 /* 10 */
@@ -807,7 +864,7 @@
 				console.log(1, attrs, c)
 				ele.bind('blur', function(e){
 					
-					c.$setValidity('unique', true);
+					c.$setValidity('unique', false);
 					
 					/*$http({
 						method: 'POST',
@@ -1311,6 +1368,57 @@
 	        }
 	    ]);
 		
+	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function(require){
+		
+		__webpack_require__(8).controller('gridViewController', [
+	        '$scope',
+			'$http',
+			
+	        function(
+				$scope,
+				$http
+			){
+				
+
+				// 在变更分布的时候，重新获取数据条目
+				var reGetProducts = function(){
+					// 发送给后台的请求数据
+					var postData = {
+						pageIndex: $scope.paginationConf.currentPage,
+						pageSize: $scope.paginationConf.itemsPerPage
+					};
+
+					$http.post('data/grid.php', postData).success(function(data){
+						// 变更分页的总数
+						$scope.paginationConf.totalItems = data.total;
+						// 变更产品条目
+						$scope.products = data.rows;
+					});
+				};
+				
+				
+				$scope.paginationConf = {
+					currentPage: 1,
+					totalItems: 8000,
+					itemsPerPage: 10,
+					pagesLength: 0,
+					perPageOptions: [10, 20, 30, 40, 50],
+					rememberPerPage: 'perPageItems',
+					onChange: function(){
+						
+					}
+				};
+				
+				 $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', reGetProducts);
+
+	        }
+	    ]);
 	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }

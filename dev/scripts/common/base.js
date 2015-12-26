@@ -12,3 +12,4 @@ require('../filter/trustAsHtml');
 require('../controllers/homeViewController');
 require('../controllers/userViewController');
 require('../controllers/formViewController');
+require('../controllers/gridViewController');
