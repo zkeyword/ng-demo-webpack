@@ -33,14 +33,15 @@
 	.page-list .page-total select {width: 50px;}
 </style>
 
-<input type="text" name="" id="" ng-model="input" />{{input}}<span class="ui-btn" ng-click="search()">搜索</span>
+<input type="text" name="" id="" ng-model="input" />
+<span class="ui-btn" ng-click="search()">搜索</span>
 
 
 <div class="mod-table">
 	<table>
 		<thead>
 			<tr>
-				<th width="20"><input type="checkbox" name="all" ng-model="selectedAll" ng-click="allFn(selectedAll, products)" /></th>
+				<th width="20"><input type="checkbox" name="all" ng-model="selectedAll" ng-click="allFn(selectedAll, userData)" /></th>
 				<th width="80">id</th>
 				<th width="100">姓名</th>
 				<th width="100">邮箱</th>
@@ -50,8 +51,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in products">
-				<td><input type="checkbox" ng-model="item.selected" ng-click="itemFn(item.selected, item, $index, products)" /></td>
+			<tr ng-repeat="item in userData" ng-if="userData.length">
+				<td><input type="checkbox" ng-model="item.selected" ng-click="itemFn(item.selected, item, $index, userData)" /></td>
 				<td>{{ item.id }}</td>
 				<td>{{ item.name }}</td>
 				<td>{{ item.email }}</td>
@@ -59,11 +60,19 @@
 				<td>{{ item.time }}</td>
 				<td>查看</td>
 			</tr>
+			<tr ng-if="!userData.length">
+				<td colspan="7">暂无数据</td>
+			</tr>
 		</tbody>
 	</div>
 </div>
+
 
 <span class="ui-btn" ng-click="getSelected()">获取选中</span>
 
 
 <tm-pagination conf="paginationConf"></tm-pagination>
+
+<script type="text/html">
+
+</script>

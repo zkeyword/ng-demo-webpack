@@ -1386,18 +1386,21 @@
 				) {
 
 					// 在变更分布的时候，重新获取数据条目
-					var reGetProducts = function () {
+					var getGridData = function (submitData) {
 						// 发送给后台的请求数据
-						var postData = {
-							pageIndex : $scope.paginationConf.currentPage,
-							pageSize : $scope.paginationConf.itemsPerPage
-						};
+						var pageData = {
+								pageIndex : $scope.paginationConf.currentPage,
+								pageSize : $scope.paginationConf.itemsPerPage
+							},
+							postData = {};
+						
+						angular.extend(postData, submitData, pageData);
 
 						$http.post('/grid', postData).success(function (data) {
 							// 变更分页的总数
 							$scope.paginationConf.totalItems = data.total;
 							// 变更产品条目
-							$scope.products = data.rows;
+							$scope.userData = data.rows;
 						});
 					};
 
@@ -1411,7 +1414,17 @@
 						onChange : function () {}
 					};
 
-					$scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', reGetProducts);
+					$scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function(){
+						getGridData();
+					});
+					
+					//搜索
+					$scope.search = function(){
+						var data = {
+							keyword: $scope.input
+						}
+						getGridData(data);
+					};
 
 					//全选
 					var filterNullArr = function (data) {
@@ -1444,7 +1457,7 @@
 								$scope.selectedTmp = null;
 							}
 						});
-					}
+					};
 
 					$scope.itemFn = function (isChecked, item, i, data) {
 						var tmpData = null;
@@ -1462,24 +1475,13 @@
 						} else {
 							$scope.selectedAll = false;
 						}
-					}
+					};
 
 					$scope.getSelected = function () {
 						console.log(filterNullArr($scope.selectedTmp));
-					}
+					};
 					
-					$scope.search = function(){
-						var input = $scope.input,
-							tmp   = [];
-
-						angular.forEach($scope.products, function(item){
-							console.log(item.name.indexOf(input))
-							if(item.name.indexOf(input) !== -1){
-								tmp.push(item);
-							}
-						});
-						$scope.products = tmp;
-					}
+					
 
 				}
 			]);
