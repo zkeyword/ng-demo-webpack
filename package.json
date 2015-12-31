@@ -6,22 +6,25 @@
     "run": "npm run gulp"
   },
   "devDependencies": {
-    "gulp": "*",
-    "gulp-uglify": "*",
-    "webpack": "*",
+    "del": "*",
     "glob": "*",
+    "gulp": "*",
+    "gulp-cache": "*",
+    "gulp-encrypt": "*",
+    "gulp-htmlmin": "*",
+    "gulp-imagemin": "*",
     "gulp-less": "*",
     "gulp-minify-css": "*",
-    "gulp-imagemin": "*",
-    "gulp-htmlmin": "*",
-    "gulp.spritesmith": "*",
-    "gulp-cache": "*",
-    "gulp-plumber": "^1.0.1",
-    "del": "*",
+    "gulp-nodemon": "^2.0.6",
     "gulp-obfuscate": "*",
-    "gulp-encrypt": "*"
+    "gulp-plumber": "^1.0.1",
+    "gulp-uglify": "*",
+    "gulp.spritesmith": "*",
+    "mockjs": "^0.1.10",
+    "webpack": "*"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "jfogs": "0.0.11"
   }
 }

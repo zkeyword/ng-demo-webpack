@@ -10,6 +10,7 @@ var gulp          = require('gulp'),
 	del           = require('del'),
 	plumber       = require('gulp-plumber'),
 	cache         = require('gulp-cache'),
+	nodemon       = require('gulp-nodemon'),
 	obfuscate     = require('gulp-obfuscate'),
 	jfogs         = require('jfogs'),
 	path          = {
@@ -134,9 +135,16 @@ gulp.task('sprite:jpg', ['clean:imagesSprite'], function () {
 			.pipe(gulp.dest(path.dev+'less/core/'));
 });
 
+gulp.task('save', function(){
+	//require('./index')
+	nodemon({
+		script: 'index.js'
+	});
+});
+
 
 //默认任务
-gulp.task('default', ['clean', 'copy', 'html', 'sprite',  'js'], function(){
+gulp.task('default', ['clean', 'copy', 'html', 'sprite',  'js', 'save'], function(){
 	
 	//监听不合并图片
 	gulp.watch(path.dev+'images/default/**', ['copy:images']);
