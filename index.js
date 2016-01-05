@@ -1,8 +1,14 @@
-var express = require('express'),
+var fs      = require('fs'),
+	express = require('express'),
 	app     = express(),
 	Mock    = require('mockjs');
 
-app.use(express.static('public'));
+app.get('/', function(req, res) {
+    fs.readFile(__dirname + '/index.html', 'utf8', function(err, text){
+        res.send(text);
+    });
+});
+//app.use(express.static('public'));
 app.use('/dest', express.static('dest'));
 
 app.post('/grid', function (req, res) {

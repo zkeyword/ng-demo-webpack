@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title ng-bind="title"></title>
+	<style type="text/css">
+		
+		/* slide in from the bottom */
+		@keyframes slideOutLeft {
+			to         { transform: translateX(-100%); }
+		}
+
+		/* entering animations --------------------------------------- */
+		/* scale up */
+		@keyframes scaleUp {
+			from     { opacity: 0.3;transform: translate3d(0%, 0px, 0px); }
+		}
+
+		/*.ng-enter  { animation: scaleUp 0.5s both ease-in; z-index: 8888; }
+		.ng-leave  { animation: slideOutLeft 0.5s both ease-in; z-index: 9999; }*/
+		
+		
+	</style>
+</head>
+<body>
+	<div ui-view></div>
+</body>
+<script src="dest/a.main.js"></script>
+</html>
